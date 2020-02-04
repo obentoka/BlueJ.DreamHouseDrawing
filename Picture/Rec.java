@@ -1,35 +1,36 @@
 import java.awt.*;
-import java.awt.geom.*;
 
 /**
- * A circle that can be manipulated and that draws itself on a canvas.
+ * A square that can be manipulated and that draws itself on a canvas.
  *
  * @author  Michael Kölling and David J. Barnes
  * @version 1.0  (15 July 2000)
  */
 
-public class Circle
+public class Rec
 {
-    private int diameter;
+    private int width;
+    private int height;
     private int xPosition;
     private int yPosition;
     private String color;
     private boolean isVisible;
 
     /**
-     * Create a new circle at default position with default color.
+     * Create a new Rectangle at default position with default color.
      */
-    public Circle()
+    public Rec()
     {
-        diameter = 30;
-        xPosition = 20;
-        yPosition = 60;
-        color = "blue";
+        width = 30;
+        height = 20;
+        xPosition = 0;
+        yPosition = 0;
+        color = "red";
         isVisible = false;
     }
 
     /**
-     * Make this circle visible. If it was already visible, do nothing.
+     * Make this Rectangle visible. If it was already visible, do nothing.
      */
     public void makeVisible()
     {
@@ -38,7 +39,7 @@ public class Circle
     }
 
     /**
-     * Make this circle invisible. If it was already invisible, do nothing.
+     * Make this Rectangle invisible. If it was already invisible, do nothing.
      */
     public void makeInvisible()
     {
@@ -47,7 +48,7 @@ public class Circle
     }
 
     /**
-     * Move the circle a few pixels to the right.
+     * Move the Rectangle a few pixels to the right.
      */
     public void moveRight()
     {
@@ -55,7 +56,7 @@ public class Circle
     }
 
     /**
-     * Move the circle a few pixels to the left.
+     * Move the square a few pixels to the left.
      */
     public void moveLeft()
     {
@@ -63,7 +64,7 @@ public class Circle
     }
 
     /**
-     * Move the circle a few pixels up.
+     * Move the square a few pixels up.
      */
     public void moveUp()
     {
@@ -71,7 +72,7 @@ public class Circle
     }
 
     /**
-     * Move the circle a few pixels down.
+     * Move the Rectangle a few pixels down.
      */
     public void moveDown()
     {
@@ -79,7 +80,7 @@ public class Circle
     }
 
     /**
-     * Move the circle horizontally by 'distance' pixels.
+     * Move the square horizontally by 'distance' pixels.
      */
     public void moveHorizontal(int distance)
     {
@@ -89,7 +90,7 @@ public class Circle
     }
 
     /**
-     * Move the circle vertically by 'distance' pixels.
+     * Move the Rectangle vertically by 'distance' pixels.
      */
     public void moveVertical(int distance)
     {
@@ -99,7 +100,7 @@ public class Circle
     }
 
     /**
-     * Slowly move the circle horizontally by 'distance' pixels.
+     * Slowly move the Rectangle horizontally by 'distance' pixels.
      */
     public void slowMoveHorizontal(int distance)
     {
@@ -123,7 +124,7 @@ public class Circle
     }
 
     /**
-     * Slowly move the circle vertically by 'distance' pixels.
+     * Slowly move the Rectangle vertically by 'distance' pixels.
      */
     public void slowMoveVertical(int distance)
     {
@@ -149,10 +150,11 @@ public class Circle
     /**
      * Change the size to the new size (in pixels). Size must be >= 0.
      */
-    public void changeSize(int newDiameter)
+    public void changeSize(int newWidth, int newHeight)
     {
         erase();
-        diameter = newDiameter;
+        width = newWidth;
+        height = newHeight;
         draw();
     }
 
@@ -176,20 +178,20 @@ public class Circle
     }
 
     /*
-     * Draw the circle with current specifications on screen.
+     * Draw the Rectangle with current specifications on screen.
      */
     private void draw()
     {
         if(isVisible) {
             Canvas canvas = Canvas.getCanvas();
-            canvas.draw(this, color, new Ellipse2D.Double(xPosition, yPosition,
-                    diameter, diameter));
+            canvas.draw(this, color,
+                    new Rectangle(xPosition, yPosition, width, height));
             canvas.wait(10);
         }
     }
 
     /*
-     * Erase the circle on screen.
+     * Erase the Rectangle on screen.
      */
     private void erase()
     {
